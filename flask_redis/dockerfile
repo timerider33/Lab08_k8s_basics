@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1
+# берём лёгкий образ Linux с Python
+FROM python:3.10-alpine
+# Ставим внутри контейнера рабочую директорию /code
+WORKDIR /code
+# То что запустит Flask
+ENV FLASK_APP=app.py
+# Слушаем все адреса
+ENV FLASK_RUN_HOST=0.0.0.0
+# Зависимости flask
+RUN apk add --no-cache gcc musl-dev linux-headers
+# Ставим требуемые библиотеки питона
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+# Копируем приложение в текущую директорию
+COPY app.py .
+# Внутри контейнера приложение слушает порт 5000, справочная инфа
+EXPOSE 5000
+# Команда запуска flask
+CMD ["flask", "run", "--debug"]

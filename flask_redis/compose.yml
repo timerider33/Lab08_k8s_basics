@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      # Можно явно указать докерфайл
+      dockerfile: dockerfile
+    ports:
+      - '8000:5000'
+    restart: unless-stopped
+  redis:
+    image: 'redis:alpine'
+    restart: unless-stopped
