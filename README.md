@@ -2,6 +2,8 @@
 
 Запуск простого Flask-приложения с Redis сначала через Docker Compose, а потом через Kubernetes. Дополнительно рядом лежит стек мониторинга: Prometheus, Grafana и Blackbox Exporter.
 
+Манифесты K8s лежат в папке flask_redis_k8s
+
 Главная идея:
 
 - Flask считает посещения главной страницы.
