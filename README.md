@@ -190,7 +190,10 @@ kubectl delete -f redis.yml
 This is a version 2 of APP. Updated by rolling update
 ```
 
-Это состояние уже после update. Плюс по ответам разных Pod видно, какая версия приложения сейчас обслуживает запросы.
+Это состояние уже после update через kubectl set image deployment/flask-app flask=flask:v2
+В манифесте все еще старая версия приложения flask:v1
+
+По ответам разных Pod видно, какая версия приложения сейчас обслуживает запросы.
 
 Типовой сценарий:
 
