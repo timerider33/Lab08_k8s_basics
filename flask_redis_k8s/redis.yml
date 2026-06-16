@@ -1,4 +1,5 @@
 apiVersion: apps/v1
+# Redis тоже запускается через Deployment
 kind: Deployment
 
 metadata:
@@ -7,8 +8,10 @@ metadata:
     app: flask-app
 
 spec:
+  # Один Redis нужен как общая память для счетчика посещений.
   replicas: 1
 
+  # selector связывает Deployment с Pod Redis.
   selector:
     matchLabels:
       app: flask-app
@@ -16,6 +19,7 @@ spec:
 
   template:
     metadata:
+      # Эти labels потом использует redis Service.
       labels:
         app: flask-app
         svc: db
